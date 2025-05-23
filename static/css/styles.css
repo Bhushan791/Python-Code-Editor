@@ -1,0 +1,405 @@
+/* Reset and base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  color: #222;
+  overflow: hidden; /* prevent vertical scroll */
+}
+
+body.page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh; /* full viewport height */
+  padding: 20px;
+  user-select: none;
+}
+
+/* Header */
+#header {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4a90e2, #357ABD);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(53, 122, 189, 0.5);
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  user-select: text;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Toolbar */
+#toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 900px;
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  color: white;
+  font-size: 1rem;
+  user-select: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.9);
+}
+
+/* Button colors */
+.btn-run {
+  background: #28a745;
+}
+.btn-download {
+  background: #17a2b8;
+}
+.btn-copy {
+  background: #ffc107;
+  color: #212529;
+}
+.btn-theme {
+  background: #343a40;
+}
+
+/* Editor container */
+.editor-container {
+  width: 100%;
+  max-width: 900px;
+  height: 50vh; /* half viewport height */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background-color: white;
+  border: 2px solid #4a90e2;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+  font-family: 'Fira Code', monospace, 'Courier New', Courier, monospace;
+  user-select: text;
+  margin-bottom: 12px;
+}
+
+/* Editor focus */
+.editor-container:focus-within {
+  border-color: #357ABD;
+  box-shadow: 0 12px 30px rgba(53,122,189,0.4);
+}
+
+/* Output container */
+.output-container {
+  width: 100%;
+  max-width: 900px;
+  height: 25vh; /* quarter viewport height */
+  background-color: #121212;
+  color: #d4d4d4;
+  font-family: 'Fira Mono', monospace;
+  font-size: 1rem;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  user-select: text;
+  line-height: 1.4;
+}
+
+/* Scrollbar for output */
+.output-container::-webkit-scrollbar {
+  width: 10px;
+}
+.output-container::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 12px;
+}
+.output-container::-webkit-scrollbar-thumb {
+  background: #4a90e2;
+  border-radius: 12px;
+}
+.output-container::-webkit-scrollbar-thumb:hover {
+  background: #357ABD;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  body.page-body {
+    padding: 15px;
+  }
+  #header {
+    font-size: 1.8rem;
+    padding: 12px 20px;
+  }
+  #toolbar {
+    gap: 8px;
+  }
+  .btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  .editor-container {
+    height: 45vh;
+  }
+  .output-container {
+    height: 20vh;
+  }
+}
+
+@media (max-width: 600px) {
+  body.page-body {
+    padding: 10px;
+  }
+  #header {
+    font-size: 1.5rem;
+    padding: 10px 15px;
+  }
+  #toolbar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+  .editor-container {
+    height: 40vh;
+  }
+  .output-container {
+    height: 18vh;
+  }
+}
+
+/* Animations */
+
+/* Button subtle float */
+@keyframes floatBtn {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.btn-run:hover {
+  animation: floatBtn 1.5s ease-in-out infinite;
+}
+.btn-download:hover {
+  animation: floatBtn 1.5s ease-in-out infinite;
+}
+.btn-copy:hover {
+  animation: floatBtn 1.5s ease-in-out infinite;
+}
+.btn-theme:hover {
+  animation: floatBtn 1.5s ease-in-out infinite;
+}
+
+/* Glow on editor focus */
+@keyframes glowBorder {
+  0%, 100% { box-shadow: 0 8px 20px rgba(53,122,189,0.4); }
+  50% { box-shadow: 0 12px 30px rgba(53,122,189,0.7); }
+}
+.editor-container:focus-within {
+  animation: glowBorder 3s ease-in-out infinite;
+}
+
+/* Output container text glow */
+@keyframes glowText {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #4a90e2,
+      0 0 12px #357ABD,
+      0 0 18px #4a90e2;
+  }
+  50% {
+    text-shadow:
+      0 0 12px #357ABD,
+      0 0 24px #4a90e2,
+      0 0 36px #357ABD;
+  }
+}
+.output-container {
+  animation: glowText 5s ease-in-out infinite;
+}
+
+/* Tooltip for buttons */
+.btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4a90e2;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInTooltip 0.3s forwards;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  user-select: none;
+  letter-spacing: 0.5px;
+  z-index: 10;
+}
+.btn[title]:hover::after {
+  opacity: 1;
+}
+@keyframes fadeInTooltip {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+#output-container {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    min-height: 150px;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.terminal-input-container {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    background: inherit;
+    animation: blink-cursor 1s infinite;
+}
+
+.terminal-prompt {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-right: 5px;
+    user-select: none;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    flex: 1;
+    padding: 2px;
+}
+
+.terminal-input::placeholder {
+    color: #666;
+}
+
+.terminal-prompt-text {
+    color: #FFF3CD;
+    margin-bottom: 5px;
+}
+
+.terminal-input-display {
+    color: #90EE90;
+    margin-bottom: 5px;
+}
+
+.terminal-instruction {
+    color: #87CEEB;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.terminal-cancel {
+    color: #ffcc00;
+    font-style: italic;
+}
+
+.terminal-running {
+    color: #007acc;
+    font-weight: bold;
+}
+
+.terminal-output {
+    white-space: pre-wrap;
+    color: inherit;
+}
+
+.terminal-error {
+    white-space: pre-wrap;
+    color: #ff6b6b;
+}
+
+.terminal-welcome {
+    color: #666;
+    font-style: italic;
+}
+
+.error {
+    border-color: #ff6b6b !important;
+    background-color: #2a1a1a !important;
+}
+
+/* Scrollbar styling */
+#output-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#output-container::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    border-radius: 4px;
+}
+
+#output-container::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+#output-container::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+@keyframes blink-cursor {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.5; }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Online Python Code Editor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+
+    <!-- Monaco Editor loader -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.41.0/min/vs/loader.js"></script>
+
+    <!-- Link external CSS -->
+</head>
+<body class="page-body editor-page bg-light font-sans">
+
+    <div id="header" class="editor-header text-center bg-primary text-white shadow-lg p-3 mb-4 rounded">
+        Online Python Code Editor
+    </div>
+
+    <div id="toolbar" role="toolbar" aria-label="Editor actions" class="toolbar flex justify-center gap-4 mb-3">
+        <button id="run-btn" class="btn btn-run bg-success text-white px-4 py-2 rounded shadow-sm hover:bg-green-600" title="Run Code (Ctrl+Enter)">
+            Run Code ▶️
+        </button>
+        <button id="download-btn" class="btn btn-download bg-info text-white px-4 py-2 rounded shadow-sm hover:bg-blue-500" title="Download Code (Ctrl+S)">
+            Download
+        </button>
+        <button id="copy-btn" class="btn btn-copy bg-warning text-white px-4 py-2 rounded shadow-sm hover:bg-yellow-500" title="Copy Code">
+            Copy
+        </button>
+        <button id="theme-toggle" class="btn btn-theme bg-dark text-white px-4 py-2 rounded shadow-sm hover:bg-gray-700" title="Toggle Theme (Light/Dark)">
+            🌙 Theme
+        </button>
+    </div>
+
+    <div id="editor-container" class="editor-container border rounded shadow-sm" role="main" aria-label="Code editor"></div>
+
+    <div id="output-container" class="output-container bg-black text-white p-3 mt-4 rounded" aria-live="polite" aria-atomic="true" role="region" aria-label="Output console"></div>
+
+    <!-- Link external JS -->
+    <script src="{{ url_for('static', filename='js/jsfile.js') }}"></script>
+
+</body>
+</html>
